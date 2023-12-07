@@ -172,12 +172,6 @@ body {
   cursor: pointer;
 }
 
-.container .content .favorite.active {
-  cursor: default;
-  pointer-events: none;
-  background-color: #c1c1c1;
-}
-
 /* PAGINATION */
 .pagination {
   grid-column: 1 / -1;

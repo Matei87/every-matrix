@@ -16,6 +16,13 @@ const MovieContainer = ({ data }) => {
     ]);
   };
 
+  const handleFilterFavoriteMovies = (id) => {
+    const filteredFavoriteMovies = favoriteMovies.filter(
+      (movie) => movie.id !== id
+    );
+    setFavoriteMovies(filteredFavoriteMovies);
+  };
+
   return (
     <>
       {data.results.map(({ id, backdrop_path, title, release_date }) => (
@@ -27,23 +34,29 @@ const MovieContainer = ({ data }) => {
           <div className='content'>
             <p>{title}</p>
             <p>Release Date: {release_date}</p>
-            <span
-              className={
-                favoriteMovies.find((movie) => movie.id === id)
-                  ? 'favorite active'
-                  : 'favorite'
-              }
-              onClick={() =>
-                addToFavorite({
-                  id,
-                  backdrop_path,
-                  title,
-                  release_date,
-                })
-              }
-            >
-              Add
-            </span>
+
+            {!favoriteMovies.find((movie) => movie.id === id) ? (
+              <span
+                className='favorite'
+                onClick={() =>
+                  addToFavorite({
+                    id,
+                    backdrop_path,
+                    title,
+                    release_date,
+                  })
+                }
+              >
+                Add
+              </span>
+            ) : (
+              <span
+                className='favorite'
+                onClick={() => handleFilterFavoriteMovies(id)}
+              >
+                Remove
+              </span>
+            )}
           </div>
         </div>
       ))}

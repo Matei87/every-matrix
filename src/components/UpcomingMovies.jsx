@@ -13,7 +13,7 @@ const UpcomingMovies = () => {
       {isLoading && <Loader />}
       {error && <p>{error}</p>}
       {!isLoading && !error && data && <MovieContainer data={data} />}
-      <Pagination page={page} setPage={setPage} />
+      {!isLoading && !error && <Pagination page={page} setPage={setPage} />}
     </div>
   );
 };
